@@ -1,0 +1,22 @@
+<resources>
+    <string name="app_name">YML Github</string>
+    <string name="home_screen"></string>
+    <!-- Messages -->
+    <string name="empty_results">No results</string>
+    <string name="followers_error_message">Error loading followers</string>
+    <string name="user_error_message">Error loading user</string>
+    <!-- Search -->
+    <string name="search_title">Search</string>
+    <string name="search_hint">Github User Name</string>
+    <string name="retry">Retry</string>
+
+    <!-- User Detail -->
+    <string name="followers_label">Followers</string>
+    <string name="following_label">Following</string>
+    <string name="repositories_label">Repositories</string>
+
+    <!-- Transition names -->
+    <string name="avatar_transition">avatar</string>
+    <string name="label_transition">username</string>
+
+</resources>

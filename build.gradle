@@ -1,0 +1,68 @@
+// Top-level build file where you can add configuration options common to all sub-projects/modules.
+
+buildscript {
+    repositories {
+        jcenter()
+    }
+    dependencies {
+        classpath 'com.android.tools.build:gradle:2.2.3'
+    }
+}
+
+allprojects {
+    repositories {
+        jcenter()
+        maven {
+            url "https://oss.sonatype.org/content/repositories/snapshots"
+        }
+    }
+}
+
+task clean(type: Delete) {
+    delete rootProject.buildDir
+}
+
+ext {
+
+    VERSION_MIN_SDK = 15
+    VERSION_TARGET_SDK = 25
+    VERSION_COMPILE_SDK = 25
+    VERSION_BUILD_TOOLS = "25.0.1"
+    VERSION_ANDROID_LIBRARY = "25.1.0"
+    VERSION_GSON = "2.6.2"
+    VERSION_OKHTTP = "3.4.0"
+    VERSION_RETROFIT = "2.2.0"
+    VERSION_PICASSO = "2.5.2"
+    VERSION_ANNOTATIONS = "24.2.0"
+    VERSION_DAGGER = "2.8"
+    VERSION_JAVAX_ANNOTATION = "1.0"
+    VERSION_BUTTERKNIFE = '7.0.1'
+    VERSION_GUAVA = '18.0'
+    VERSION_RX_ANDROID = '2.0.1'
+    VERSION_RX_JAVA = '2.0.1'
+
+    DEPENDENCY_RX_ANDROID = "io.reactivex.rxjava2:rxandroid:${VERSION_RX_ANDROID}"
+    DEPENDENCY_RX_JAVA = "io.reactivex.rxjava2:rxjava:${VERSION_RX_JAVA}"
+
+    DEPENDENCY_GUAVA = "com.google.guava:guava:${VERSION_GUAVA}"
+    DEPENDENCY_DAGGER_COMPILER = "com.google.dagger:dagger-compiler:${VERSION_DAGGER}"
+    DEPENDENCY_GDAGGER = "com.google.dagger:dagger:${VERSION_DAGGER}"
+    DEPENDENCY_JAVAX_ANNOTATION = "javax.annotation:jsr250-api:${VERSION_JAVAX_ANNOTATION}"
+
+    DEPENDENCY_SUPPORT_V4 = "com.android.support:support-v4:${VERSION_ANDROID_LIBRARY}"
+    DEPENDENCY_RECYCLER_VIEW_V7 = "com.android.support:recyclerview-v7:${VERSION_ANDROID_LIBRARY}"
+    DEPENDENCY_ANDROID_DESIGN = "com.android.support:design:${VERSION_ANDROID_LIBRARY}"
+    DEPENDENCY_APPCOMPAT_V7 = "com.android.support:appcompat-v7:${VERSION_ANDROID_LIBRARY}"
+    DEPENDENCY_BUTTERKNIFE = "com.jakewharton:butterknife:${VERSION_BUTTERKNIFE}"
+
+    DEPENDENCY_OKHTTP = "com.squareup.okhttp3:logging-interceptor:${VERSION_OKHTTP}"
+    DEPENDENCY_RETROFIT = "com.squareup.retrofit2:retrofit:${VERSION_RETROFIT}"
+    DEPENDENCY_RETROFIT_CONVERTER = "com.squareup.retrofit2:converter-gson:${VERSION_RETROFIT}"
+
+    DEPENDENCY_RETROFIT_ADAPTER = "com.squareup.retrofit2:adapter-rxjava2:${VERSION_RETROFIT}"
+    DEPENDENCY_GSON = "com.google.code.gson:gson:${VERSION_GSON}"
+
+    DEPENDENCY_PICASSO = "com.squareup.picasso:picasso:${VERSION_PICASSO}"
+    DEPENDENCY_ANNOTATIONS = "com.android.support:support-annotations:${VERSION_ANNOTATIONS}"
+
+}

@@ -1,0 +1,90 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="horizontal" android:layout_width="match_parent"
+    android:weightSum="3"
+    android:paddingTop="8dp"
+    android:layout_marginRight="80dp"
+    android:layout_marginLeft="80dp"
+    android:layout_height="100dp">
+
+        <LinearLayout
+            android:id="@+id/followers_section"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:orientation="vertical"
+            android:layout_gravity="center"
+            android:layout_weight="1">
+
+            <TextView
+                android:id="@+id/followers_tv"
+                android:textColor="@color/colorWhite"
+                android:layout_gravity="center"
+                android:textAlignment="center"
+                android:layout_width="wrap_content"
+                style="@style/NormalTextStyle"
+                android:layout_height="wrap_content"/>
+
+            <TextView
+                android:id="@+id/followers_label_tv"
+                android:textColor="@color/colorWhite"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:gravity="center"
+                style="@style/NormalTextStyle"
+                android:text="@string/followers_label"/>
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/following_section"
+            android:layout_width="0dp"
+            android:orientation="vertical"
+            android:layout_weight="1"
+            android:layout_height="match_parent">
+
+            <TextView
+                android:id="@+id/following_tv"
+                android:textColor="@color/colorWhite"
+                android:layout_gravity="center"
+                style="@style/NormalTextStyle"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"/>
+
+            <TextView
+                android:id="@+id/following_label_tv"
+                android:textColor="@color/colorWhite"
+                android:layout_width="wrap_content"
+                android:layout_gravity="center"
+                android:layout_height="wrap_content"
+                style="@style/NormalTextStyle"
+                android:text="@string/following_label"/>
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/repositories_section"
+            android:layout_width="0dp"
+            android:orientation="vertical"
+            android:layout_weight="1"
+            android:layout_height="match_parent">
+
+            <TextView
+                android:id="@+id/repos_tv"
+                android:textColor="@color/colorWhite"
+                android:layout_gravity="center"
+                style="@style/NormalTextStyle"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"/>
+
+            <TextView
+                android:id="@+id/repos_label_tv"
+                android:textColor="@color/colorWhite"
+                style="@style/NormalTextStyle"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:text="@string/repositories_label"/>
+
+        </LinearLayout>
+
+</LinearLayout>

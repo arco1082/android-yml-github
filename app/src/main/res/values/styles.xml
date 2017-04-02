@@ -1,0 +1,117 @@
+<resources>
+
+    <style name="AppTheme" parent="Theme.AppCompat.Light.DarkActionBar">
+        <!-- Customize your theme here. -->
+        <item name="colorPrimary">@color/colorPrimary</item>
+        <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
+        <item name="colorAccent">@color/colorAccent</item>
+    </style>
+
+    <style name="AppTheme.ClearActionBar" parent="@style/ThemeOverlay.AppCompat.Dark.ActionBar">
+        <item name="android:windowActionBarOverlay">true</item>
+        <!-- Support library compatibility -->
+        <item name="windowActionBarOverlay">true</item>
+    </style>
+
+    <style name="AppTheme.NoActionBar">
+        <item name="windowActionBar">false</item>
+        <item name="windowNoTitle">true</item>
+    </style>
+
+    <style name="AppTheme.PopupOverlay" parent="ThemeOverlay.AppCompat.Light" />
+    <style name="AppTheme.AppBarOverlay" parent="ThemeOverlay.AppCompat.Dark.ActionBar" />
+
+    <style name="ActionBarStyle" parent="@style/Widget.AppCompat.ActionBar">
+        <item name="android:background">@color/colorPrimaryDark</item>
+        <item name="android:textColor">@color/text_inverted</item>
+        <item name="android:textColorPrimary">@color/text_inverted</item>
+        <item name="android:textColorSecondary">@color/text_inverted</item>
+        <!-- Support library compatibility -->
+        <item name="background">@color/colorPrimary</item>
+        <item name="android:layout_height">?android:attr/actionBarSize</item>
+    </style>
+
+    <style name="AppTheme.ProgressBar">
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:layout_centerInParent">true</item>
+        <item name="android:layout_gravity">center</item>
+        <item name="android:visibility">visible</item>
+    </style>
+
+    <style name="AppTheme.Button">
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:layout_centerVertical">true</item>
+        <item name="android:layout_centerHorizontal">true</item>
+        <item name="android:layout_gravity">center</item>
+    </style>
+
+    <style name="ListImageStyle">
+        <!-- Customize your theme here. -->
+        <item name="android:layout_width">@dimen/item_image_width</item>
+        <item name="android:layout_height">@dimen/item_image_width</item>
+        <item name="android:scaleType">centerCrop</item>
+        <item name="android:layout_marginBottom">@dimen/item_image_margin</item>
+        <item name="android:color">@color/textColor</item>
+    </style>
+
+    <style name="DetailImageStyle">
+        <!-- Customize your theme here. -->
+        <item name="android:layout_width">@dimen/detail_image_avatar_width</item>
+        <item name="android:layout_height">@dimen/detail_image_avatar_width</item>
+        <item name="android:scaleType">centerCrop</item>
+        <item name="android:layout_marginBottom">@dimen/item_image_margin</item>
+    </style>
+
+    <style name="HeroSectionStyle">
+        <item name="android:background">@color/colorPrimary</item>
+        <item name="android:gravity">center</item>
+        <item name="android:layout_height">@dimen/hero_section_height</item>
+    </style>
+
+    <style name="ListTextStyle">
+        <!-- Customize your theme here. -->
+        <item name="android:textSize">@dimen/item_small_text</item>
+        <item name="android:padding">@dimen/text_padding</item>
+        <item name="android:color">@color/textColor</item>
+    </style>
+
+    <style name="LargeTextStyle">
+        <!-- Customize your theme here. -->
+        <item name="android:textSize">@dimen/item_large_text</item>
+        <item name="android:padding">@dimen/text_padding</item>
+        <item name="android:textColor">@color/textColor</item>
+    </style>
+
+    <style name="NormalTextStyle">
+        <!-- Customize your theme here. -->
+        <item name="android:textSize">@dimen/item_normal_text</item>
+        <item name="android:padding">@dimen/text_padding</item>
+        <item name="android:textColor">@color/textColor</item>
+    </style>
+
+    <style name="SmallTextStyle">
+        <!-- Customize your theme here. -->
+        <item name="android:textSize">@dimen/item_small_text</item>
+        <item name="android:padding">@dimen/text_padding</item>
+        <item name="android:textColor">@color/textColor</item>
+    </style>
+
+
+    <style name="LargeWhiteText">
+        <!-- Customize your theme here. -->
+        <item name="android:textSize">@dimen/detail_big_text</item>
+        <item name="android:textColor">@color/colorWhite</item>
+        <item name="android:padding">@dimen/text_padding</item>
+        <item name="android:textStyle">bold</item>
+    </style>
+
+    <!-- Custom Spinner -->
+    <style name="Spinner">
+        <item name="android:indeterminate">true</item>
+        <item name="android:indeterminateDuration">2000</item>
+        <item name="android:indeterminateOnly">true</item>
+    </style>
+
+</resources>

@@ -1,0 +1,67 @@
+apply plugin: 'com.android.application'
+
+android {
+    compileSdkVersion 25
+    buildToolsVersion "25.0.1"
+    defaultConfig {
+        applicationId "com.clickherelabs.richards"
+        minSdkVersion 16
+        targetSdkVersion 25
+        versionCode 1
+        versionName "1.0"
+        testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
+        // Add the following two lines
+        renderscriptTargetApi 19
+        renderscriptSupportModeEnabled true
+    }
+
+    buildTypes {
+        release {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+        }
+    }
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_1_7
+        targetCompatibility JavaVersion.VERSION_1_7
+    }
+}
+
+dependencies {
+    compile fileTree(dir: 'libs', include: ['*.jar'])
+    androidTestCompile('com.android.support.test.espresso:espresso-core:2.2.2', {
+        exclude group: 'com.android.support', module: 'support-annotations'
+    })
+
+    androidTestCompile 'org.mockito:mockito-core:1.9.5'
+    compile project.DEPENDENCY_GUAVA
+
+    //RX
+    compile project.DEPENDENCY_RX_ANDROID
+    compile project.DEPENDENCY_RX_JAVA
+
+    //Retrofit
+    compile project.DEPENDENCY_RETROFIT
+    compile project.DEPENDENCY_RETROFIT_CONVERTER
+    compile project.DEPENDENCY_RETROFIT_ADAPTER
+    compile project.DEPENDENCY_OKHTTP
+
+    //Dagger
+    compile project.DEPENDENCY_GDAGGER
+    compile project.DEPENDENCY_JAVAX_ANNOTATION
+    annotationProcessor project.DEPENDENCY_DAGGER_COMPILER
+
+    testCompile 'junit:junit:4.12'
+
+    //UI Tools
+    compile project.DEPENDENCY_BUTTERKNIFE
+    compile project.DEPENDENCY_PICASSO
+
+    //Android tools
+    compile project.DEPENDENCY_RECYCLER_VIEW_V7
+    compile project.DEPENDENCY_ANDROID_DESIGN
+    compile project.DEPENDENCY_APPCOMPAT_V7
+    compile project.DEPENDENCY_SUPPORT_V4
+    compile project.DEPENDENCY_GSON
+
+}

@@ -1,0 +1,86 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:tools="http://schemas.android.com/tools"
+        android:id="@+id/activity_main"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:paddingBottom="@dimen/activity_vertical_margin"
+        android:paddingLeft="@dimen/activity_horizontal_margin"
+        android:paddingRight="@dimen/activity_horizontal_margin"
+        android:paddingTop="@dimen/activity_vertical_margin">
+
+        <RelativeLayout
+                android:id="@+id/hero_section"
+                android:layout_width="match_parent"
+                android:layout_alignParentTop="true"
+                android:orientation="vertical"
+                style="@style/HeroSectionStyle">
+
+                <ImageView
+                    android:id="@+id/top_image"
+                    android:layout_centerInParent="true"
+                    android:layout_alignParentTop="true"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:scaleType="centerCrop"/>
+
+                <ImageView
+                    android:id="@+id/avatar_image"
+                    android:layout_centerHorizontal="true"
+                    android:layout_alignParentTop="true"
+                    android:layout_marginTop="30dp"
+                    android:transitionName="@string/avatar_transition"
+                    style="@style/DetailImageStyle"/>
+
+                <TextView
+                    android:id="@+id/login_tv"
+                    android:layout_centerHorizontal="true"
+                    android:layout_below="@+id/avatar_image"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textColor="@color/colorWhite"
+                    android:transitionName="@string/label_transition"
+                    style="@style/LargeTextStyle"/>
+
+                <TextView
+                    android:id="@+id/full_name_tv"
+                    android:layout_centerHorizontal="true"
+                    android:layout_below="@+id/login_tv"
+                    android:layout_width="wrap_content"
+                    android:textColor="@color/colorWhite"
+                    android:layout_height="wrap_content"
+                    style="@style/NormalTextStyle"/>
+
+                <include
+                    layout="@layout/github_user_details"
+                    android:layout_centerHorizontal="true"
+                    android:layout_below="@+id/full_name_tv"
+                    android:layout_width="@dimen/github_details_width"
+                    android:layout_height="wrap_content" />
+
+        </RelativeLayout>
+
+        <LinearLayout
+            android:id="@+id/main_section"
+            android:layout_width="match_parent"
+            android:layout_below="@+id/hero_section"
+            android:orientation="vertical"
+            android:padding="20dp"
+            android:layout_height="match_parent">
+
+            <TextView
+                android:id="@+id/location_tv"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerHorizontal="true"
+                style="@style/NormalTextStyle"/>
+
+            <TextView
+                android:id="@+id/email_tv"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerHorizontal="true"
+                style="@style/NormalTextStyle"/>
+
+        </LinearLayout>
+</RelativeLayout>
