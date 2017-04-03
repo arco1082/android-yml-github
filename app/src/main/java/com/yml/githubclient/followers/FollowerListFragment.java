@@ -5,6 +5,7 @@ import android.graphics.Bitmap;
 import android.graphics.drawable.BitmapDrawable;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
+import android.support.annotation.Nullable;
 import android.support.design.widget.Snackbar;
 import android.support.v4.app.Fragment;
 import android.support.v4.graphics.drawable.RoundedBitmapDrawable;
@@ -47,6 +48,8 @@ import butterknife.ButterKnife;
 public class FollowerListFragment extends Fragment implements SearchView.OnQueryTextListener, FollowerListContract.FollowerView {
 
     public final static String TAG = FollowerListFragment.class.getSimpleName();
+    private static final String INSTANCE_STATE_PARAM_HAS_SEARCHED = "com.yml.STATE_PARAM_HAS_SEARCHED";
+    private static final String INSTANCE_STATE_PARAM_SEARCH = "com.yml.INSTANCE_STATE_PARAM_SEARCH";
     private FollowerListContract.Presenter mPresenter;
     private FollowerAdapter mAdapter;
     protected static final int FOLLOWERS_LOADER = 0;
@@ -99,6 +102,7 @@ public class FollowerListFragment extends Fragment implements SearchView.OnQuery
             }
         }
     }
+
     @Override
     public void onAttach(Context context) {
         super.onAttach(context);
@@ -107,6 +111,31 @@ public class FollowerListFragment extends Fragment implements SearchView.OnQuery
         }
     }
 
+    @Override
+    public void onSaveInstanceState(Bundle state) {
+        Log.d(TAG, "onSaveInstanceState");
+        state.putBoolean(INSTANCE_STATE_PARAM_HAS_SEARCHED, mHasSearched);
+        state.putString(INSTANCE_STATE_PARAM_SEARCH, mSearchText);
+        super.onSaveInstanceState(state);
+
+    }
+
+    @Override
+    public void onActivityCreated(@Nullable Bundle state) {
+        Log.d(TAG, "onActivityCreated");
+        super.onActivityCreated(state);
+
+        if (state != null) {
+            mHasSearched = state.getBoolean(INSTANCE_STATE_PARAM_HAS_SEARCHED);
+            mSearchText = state.getString(INSTANCE_STATE_PARAM_SEARCH);
+            View view = getActivity().getCurrentFocus();
+            if (view != null) {
+                InputMethodManager imm = (InputMethodManager) getActivity().getSystemService(Context.INPUT_METHOD_SERVICE);
+                imm.hideSoftInputFromWindow(view.getWindowToken(), 0);
+            }
+        }
+
+    }
 
     private void setupRecyclerView() {
         GridLayoutManager lLayout = new GridLayoutManager(getActivity(), 3);
@@ -134,7 +163,7 @@ public class FollowerListFragment extends Fragment implements SearchView.OnQuery
 
     @Override
     public void onCreateOptionsMenu(Menu menu, MenuInflater inflater) {
-
+        Log.d(TAG, "onCreateOptionsMenu");
         inflater.inflate(R.menu.menu_search, menu);
         MenuItem actionMenuItem = menu.findItem(R.id.action_search);
         SearchView searchView =
@@ -143,6 +172,10 @@ public class FollowerListFragment extends Fragment implements SearchView.OnQuery
         searchView.setQueryHint(getString(R.string.search_hint));
         if (!mHasSearched) {
             searchView.setIconified(false);
+        }
+
+        if (mHasSearched && !TextUtils.isEmpty(mSearchText)) {
+            mPresenter.loadFollowers(mSearchText, true);
         }
 
         super.onCreateOptionsMenu(menu, inflater);

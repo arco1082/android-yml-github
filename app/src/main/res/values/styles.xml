@@ -110,8 +110,15 @@
     <!-- Custom Spinner -->
     <style name="Spinner">
         <item name="android:indeterminate">true</item>
+        <item name="android:indeterminateDrawable">@drawable/spinner</item>
         <item name="android:indeterminateDuration">2000</item>
         <item name="android:indeterminateOnly">true</item>
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>\
+        <item name="android:layout_centerInParent">true</item>
+        <item name="android:layout_gravity">center</item>
+        <item name="android:visibility">visible</item>
     </style>
+
 
 </resources>

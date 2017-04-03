@@ -1,11 +1,14 @@
 package com.yml.githubclient.githubuser;
 
+import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.drawable.BitmapDrawable;
 import android.graphics.drawable.Drawable;
+import android.net.Uri;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.v4.app.Fragment;
+import android.support.v4.app.ShareCompat;
 import android.support.v4.graphics.drawable.RoundedBitmapDrawable;
 import android.support.v4.graphics.drawable.RoundedBitmapDrawableFactory;
 import android.support.v7.widget.RecyclerView;
@@ -20,9 +23,11 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.ImageView;
+import android.widget.ProgressBar;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 import com.squareup.picasso.Callback;
+import com.squareup.picasso.MemoryPolicy;
 import com.squareup.picasso.Picasso;
 import com.yml.githubclient.R;
 import com.yml.githubclient.data.models.GithubUser;
@@ -30,6 +35,7 @@ import javax.inject.Inject;
 
 import butterknife.Bind;
 import butterknife.ButterKnife;
+import butterknife.OnClick;
 
 import static com.google.common.base.Preconditions.checkNotNull;
 
@@ -56,7 +62,8 @@ public class UserDetailFragment extends Fragment implements GithubUserContract.U
     @Bind(R.id.followers_tv) TextView mFollowersTextView;
     @Bind(R.id.following_tv) TextView mFollowingTextView;
     @Bind(R.id.repos_tv) TextView mRepositoriesTextView;
-    //@Bind(R.id.main_content) TextView mEmptyView;
+    @Bind(R.id.error_message) TextView mErrorMessage;
+    @Bind(R.id.rl_progress) RelativeLayout mProgress;
 
     protected GithubUser mUser;
 
@@ -97,6 +104,21 @@ public class UserDetailFragment extends Fragment implements GithubUserContract.U
         mPresenter.unsubscribe();
     }
 
+    @OnClick(R.id.email_section)
+    public void submit(View view) {
+
+        if (!TextUtils.isEmpty(mEmailTextView.getText())) {
+            ShareCompat.IntentBuilder.from(getActivity())
+                    .setType("message/rfc822")
+                    .addEmailTo(mEmailTextView.getText().toString())
+                    .setSubject("YML Github")
+                    .setText("Placeholder text")
+                    .setChooserTitle("Send Email")
+                    .startChooser();
+        }
+
+    }
+
     @Override
     public void setPresenter(@NonNull GithubUserContract.Presenter presenter) {
         mPresenter = checkNotNull(presenter);
@@ -104,28 +126,17 @@ public class UserDetailFragment extends Fragment implements GithubUserContract.U
 
     @Override
     public void setLoadingIndicator(boolean active) {
-
+        //mProgress.setVisibility(View.VISIBLE);
+        mErrorMessage.setVisibility(View.GONE);
+        mBottomSection.setVisibility(View.GONE);
     }
 
     @Override
-    public void showUser(GithubUser user){
+    public void showUser(final GithubUser user){
 
         Picasso.with(getActivity())
                 .load(user.getAvatarUrl())
-                .into(mBkgImage, new Callback() {
-                    @Override
-                    public void onSuccess() {
-                        Bitmap imageBitmap = ((BitmapDrawable) mBkgImage.getDrawable()).getBitmap();
-                        Drawable drawable = new BitmapDrawable(blur(imageBitmap));
-                        mBkgImage.setImageDrawable(drawable);
-                    }
-                    @Override
-                    public void onError() {
-                    }
-                });
-
-        Picasso.with(getActivity())
-                .load(user.getAvatarUrl())
+                .memoryPolicy(MemoryPolicy.NO_CACHE )
                 .placeholder(getActivity().getResources().getDrawable(R.drawable.android_icon))
                 .into(mAvatarImage, new Callback() {
                     @Override
@@ -135,6 +146,7 @@ public class UserDetailFragment extends Fragment implements GithubUserContract.U
                         imageDrawable.setCircular(true);
                         imageDrawable.setCornerRadius(Math.max(imageBitmap.getWidth(), imageBitmap.getHeight()) / 2.0f);
                         mAvatarImage.setImageDrawable(imageDrawable);
+                        loadHero(user);
                     }
                     @Override
                     public void onError() {
@@ -162,6 +174,28 @@ public class UserDetailFragment extends Fragment implements GithubUserContract.U
         mFollowersTextView.setText(String.valueOf(user.getFollowers()));
         mFollowingTextView.setText(String.valueOf(user.getFollowing()));
     }
+    private void loadHero(final GithubUser user) {
+
+        Picasso.with(getActivity())
+                .load(user.getAvatarUrl())
+                .memoryPolicy(MemoryPolicy.NO_CACHE )
+                .into(mBkgImage, new Callback() {
+                    @Override
+                    public void onSuccess() {
+                        Bitmap imageBitmap = ((BitmapDrawable) mBkgImage.getDrawable()).getBitmap();
+                        Drawable drawable = new BitmapDrawable(blur(imageBitmap));
+                        mBkgImage.setImageDrawable(drawable);
+                        mProgress.setVisibility(View.GONE);
+                        mErrorMessage.setVisibility(View.GONE);
+                        mBottomSection.setVisibility(View.VISIBLE);
+                        mTopSection.setVisibility(View.VISIBLE);
+                    }
+                    @Override
+                    public void onError() {
+                    }
+                });
+
+    }
 
     private static final float BLUR_RADIUS = 25f;
 
@@ -184,7 +218,10 @@ public class UserDetailFragment extends Fragment implements GithubUserContract.U
 
     @Override
     public void showLoadingUserError(){
-
+        mProgress.setVisibility(View.GONE);
+        mErrorMessage.setVisibility(View.VISIBLE);
+        mBottomSection.setVisibility(View.GONE);
+        mTopSection.setVisibility(View.GONE);
     }
 
     @Override

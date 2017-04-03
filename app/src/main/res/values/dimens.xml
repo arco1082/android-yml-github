@@ -6,7 +6,7 @@
     <dimen name="recyclerview_item_padding">8dp</dimen>
     <dimen name="item_image_sidelength">95dp</dimen>
     <dimen name="item_image_width">48dp</dimen>
-    <dimen name="detail_image_avatar_width">60dp</dimen>
+    <dimen name="detail_image_avatar_width">80dp</dimen>
     <dimen name="github_details_width">300dp</dimen>
     <dimen name="hero_section_height">250dp</dimen>
 
